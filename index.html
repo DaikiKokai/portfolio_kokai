@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Production Portfolio</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Gothic A1', 'Arial Narrow', Arial, sans-serif;
+            background-color: #fff5e6;
+            color: #333;
+            letter-spacing: 0.05em;
+        }
+        .header {
+            background-color: #1e3a8a;
+            color: #fff;
+            text-align: center;
+            padding: 3rem 1rem 2rem 1rem;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            animation: fadeInDown 1.2s ease-out;
+        }
+        .thumbnails {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin: 3rem 0;
+            max-width: 1200px;
+            padding: 0 2rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .thumbnail {
+            width: calc(33.333% - 2rem);
+            min-width: 300px;
+            height: 200px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            background: #eee;
+            animation: fadeIn 1s ease-out;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            margin-bottom: 2rem;
+        }
+        .thumbnail:hover {
+            transform: translateY(-5px);
+        }
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* モーダルウィンドウのスタイル */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 80%;
+            max-width: 900px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            margin-bottom: 20px;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+        }
+
+        .work-details {
+            padding: 20px;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* パーティクル用のスタイル */
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.5;
+        }
+        
+        /* レスポンシブデザイン用のスタイル */
+        @media screen and (max-width: 1024px) {
+            .thumbnails {
+                padding: 0 1rem;
+            }
+            .thumbnail {
+                width: calc(50% - 1rem);
+                margin-bottom: 1rem;
+            }
+            .modal-content {
+                width: 95%;
+                margin: 20px auto;
+            }
+        }
+
+        @media screen and (max-width: 640px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            .thumbnails {
+                gap: 1rem;
+            }
+            .thumbnail {
+                width: 100%;
+                min-width: auto;
+            }
+            .sort-controls button {
+                width: 100%;
+                margin: 0.5rem 0;
+            }
+            .work-details {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Video Production Portfolio</h1>
+    </div>
+    <div class="thumbnails">
+        <div class="thumbnail" data-number="1" onclick="openModal('DED2OGgijvI', 'プロモーション動画 #1', 'クライアント様の企業PRビデオです。')">
+            <div class="thumbnail-number">1</div>
+            <img src="https://source.unsplash.com/random/800x600/?video,production" alt="Thumbnail 1">
+        </div>
+        <div class="thumbnail" data-number="2" onclick="openModal('', 'クリエイティブワーク #2', '創造的な映像作品です。')">
+            <div class="thumbnail-number">2</div>
+            <img src="https://source.unsplash.com/random/800x600/?film,creative" alt="Thumbnail 2">
+        </div>
+        <div class="thumbnail" data-number="3" onclick="openModal('', 'ブランド映像 #3', 'ブランディング用の映像コンテンツです。')">
+            <div class="thumbnail-number">3</div>
+            <img src="https://source.unsplash.com/random/800x600/?camera,media" alt="Thumbnail 3">
+        </div>
+        <div class="thumbnail" data-number="4" onclick="openModal('', 'ブランド映像 #4', 'ブランディング用の映像コンテンツです。')">
+            <div class="thumbnail-number">4</div>
+            <img src="https://source.unsplash.com/random/800x600/?camera,media" alt="Thumbnail 4">
+        </div>
+        <div class="thumbnail" data-number="5" onclick="openModal('', 'ブランド映像 #5', 'ブランディング用の映像コンテンツです。')">
+            <div class="thumbnail-number">5</div>
+            <img src="https://source.unsplash.com/random/800x600/?camera,media" alt="Thumbnail 5">
+        </div>
+        <div class="thumbnail" data-number="6" onclick="openModal('', 'ブランド映像 #6', 'ブランディング用の映像コンテンツです。')">
+            <div class="thumbnail-number">6</div>
+            <img src="https://source.unsplash.com/random/800x600/?camera,media" alt="Thumbnail 6">
+        </div>
+    </div>
+
+    <!-- 並び替えコントロール -->
+    <div class="sort-controls">
+        <button onclick="sortThumbnails('asc')">昇順に並び替え</button>
+        <button onclick="sortThumbnails('desc')">降順に並び替え</button>
+    </div>
+
+    <!-- モーダルウィンドウ -->
+    <div id="videoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <div class="video-container">
+                <iframe id="modalVideo" src="" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="work-details">
+                <h2 id="workTitle"></h2>
+                <p id="workDescription"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(videoId, title, description) {
+            const modal = document.getElementById('videoModal');
+            const videoFrame = document.getElementById('modalVideo');
+            const workTitle = document.getElementById('workTitle');
+            const workDescription = document.getElementById('workDescription');
+            
+            videoFrame.src = `https://www.youtube.com/embed/${videoId}`;
+            workTitle.textContent = title;
+            workDescription.textContent = description;
+            
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('videoModal');
+            const videoFrame = document.getElementById('modalVideo');
+            videoFrame.src = ''; // 動画を停止
+            modal.style.display = 'none';
+        }
+
+        // モーダル外クリックで閉じる
+        window.onclick = function(event) {
+            const modal = document.getElementById('videoModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        function sortThumbnails(order) {
+            const thumbnailsContainer = document.querySelector('.thumbnails');
+            const thumbnails = Array.from(document.querySelectorAll('.thumbnail'));
+            
+            thumbnails.sort((a, b) => {
+                const aNum = parseInt(a.dataset.number);
+                const bNum = parseInt(b.dataset.number);
+                return order === 'asc' ? aNum - bNum : bNum - aNum;
+            });
+            
+            thumbnails.forEach(thumbnail => {
+                thumbnailsContainer.appendChild(thumbnail);
+            });
+        }
+    </script>
+</body>
+</html>
+    </style>
