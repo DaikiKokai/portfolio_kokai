@@ -3,42 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Production Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <title>Production Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=League+Gothic&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
-            font-family: 'Montserrat', 'Gothic A1', sans-serif;
-            background-color: #1a1a1a;
-            color: #e0e0e0;
+            font-family: 'Noto Sans JP', 'Helvetica Neue', Arial, sans-serif;
+            background-color: #ffffff;
+            color: #333333;
             letter-spacing: 0.05em;
+            line-height: 1.6;
         }
+
         .header {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-            color: #fff;
-            text-align: center;
-            padding: 4rem 1rem 3rem 1rem;
+            background: linear-gradient(135deg, #003366 0%, #0066cc 100%);
+            padding: 1.5rem 2rem;
             position: relative;
-            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
+
         .header h1 {
             margin: 0;
-            font-size: 3.5rem;
-            letter-spacing: 3px;
-            background: linear-gradient(45deg, #e0e0e0, #fff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: fadeInDown 1.2s ease-out;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            font-size: 2rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            color: #ffffff;
+            text-transform: uppercase;
         }
+
         .thumbnails {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin: 3rem auto;
-            max-width: 1200px;
+            max-width: 1400px;
             padding: 0 2rem;
+        }
+
+        .thumbnail {
+            background: #ffffff;
+            border: none;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .thumbnail:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .thumbnail-number {
+            background: rgba(0, 51, 102, 0.9);
+            color: #ffffff;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .sort-controls {
+            text-align: center;
+            margin: 2rem 0 4rem;
+        }
+
+        .sort-controls button {
+            background: #003366;
+            color: #ffffff;
+            border: none;
+            padding: 12px 32px;
+            margin: 0 10px;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .sort-controls button:hover {
+            background: #0066cc;
+            transform: translateY(-2px);
+        }
+
+        .modal-content {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+        }
+
+        .work-details {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+
+        .work-details h2 {
+            color: #003366;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .work-details p {
+            color: #495057;
+            line-height: 1.8;
+        }
+
+        .close-button {
+            background: #003366;
+            color: #ffffff;
+            border: none;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .close-button:hover {
+            background: #0066cc;
+        }
+
+
+        .sort-controls button {
+            background: linear-gradient(135deg, #4B9FE1 0%, #E6F3FF 100%);
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            margin: 0 10px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .sort-controls button:hover {
+            background: linear-gradient(135deg, #E6F3FF 0%, #4B9FE1 100%);
+            transform: translateY(-2px);
+        }
+
+        .modal-content {
+            background: #ffffff;
+            color: #333333;
+            border: 1px solid #E6F3FF;
+        }
+
+        .work-details {
+            background: #f8fbff;  /* 薄い青色の背景 */
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid #E6F3FF;
+        }
+
+        .work-details h2 {
+            color: #4B9FE1;  /* 青色のヘッダー */
+        }
+
+        .work-details p {
+            color: #666666;  /* テキストを少し暗めのグレーに */
+        }
+
+        .close-button {
+            background: #4B9FE1;
+            border: 2px solid #E6F3FF;
+            color: #ffffff;
+        }
+
+        .close-button:hover {
+            background: #E6F3FF;
+            color: #4B9FE1;
+        }
+        /* ヘッダーのスタイル */
+        /* 作品詳細のスタイル */
+        .work-details {
+            padding: 25px;
+            background: #1a1a1a;
+            border-radius: 8px;
+            margin-top: 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* パーティクル用のスタイル */
+        #particles-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
         }
         .thumbnail {
             width: calc(33.333% - 2rem);
@@ -52,10 +201,6 @@
             cursor: pointer;
             transition: all 0.4s ease;
             position: relative;
-        }
-        .thumbnail:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 12px 32px rgba(0,0,0,0.4);
         }
         .thumbnail-number {
             position: absolute;
@@ -207,7 +352,7 @@
         }
 
         /* パーティクル用のスタイル */
-        #particles {
+        #particles-bg {
             position: fixed;
             top: 0;
             left: 0;
@@ -252,10 +397,12 @@
             }
         }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
+    <canvas id="particles-bg"></canvas>
     <div class="header">
-        <h1>Video Production Portfolio</h1>
+        <h1>Production Portfolio</h1>
     </div>
     <div class="thumbnails">
         <div class="thumbnail" data-number="1" onclick="openModal('DED2OGgijvI', 'プロモーション動画 #1', 'クライアント様の企業PRビデオです。')">
@@ -348,5 +495,178 @@
             });
         }
     </script>
+
+    <script>
+        let scene, camera, renderer, particles, lines;
+        const particlesData = [];
+        const maxParticleCount = 150;
+        const particleCount = 150;
+        const r = 2500;                
+        const rHalf = r / 2;
+        const maxConnections = 10;
+        const minDistance = 400;
+        const maxDistance = 800;
+
+        function initParticles() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 6000);
+            renderer = new THREE.WebGLRenderer({
+                canvas: document.getElementById('particles-bg'),
+                alpha: true,
+                antialias: true
+            });
+            
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setClearColor(0xE6F3FF, 1); // 薄い青色の背景色
+
+            const geometry = new THREE.BufferGeometry();
+            const positions = new Float32Array(maxParticleCount * 3);
+            const linePositions = new Float32Array(maxParticleCount * maxConnections * 3);
+            const lineColors = new Float32Array(maxParticleCount * maxConnections * 3);
+
+            const pMaterial = new THREE.PointsMaterial({
+                color: 0x0047AB,        // 濃い青色のパーティクル（コバルトブルー）
+                size: 8,
+                blending: THREE.AdditiveBlending,
+                transparent: true,
+                opacity: 1.0
+            });
+
+            // パーティクルの分散方法を改善
+            for (let i = 0; i < maxParticleCount; i++) {
+                const u = Math.random();
+                const v = Math.random();
+                const theta = 2 * Math.PI * u;
+                const phi = Math.acos(2 * v - 1);
+                const radius = r * (0.6 + Math.random() * 0.4); // より外側に分布
+
+                const x = radius * Math.sin(phi) * Math.cos(theta);
+                const y = radius * Math.sin(phi) * Math.sin(theta);
+                const z = radius * Math.cos(phi);
+
+                positions[i * 3] = x;
+                positions[i * 3 + 1] = y;
+                positions[i * 3 + 2] = z;
+
+                particlesData.push({
+                    velocity: new THREE.Vector3(
+                        (-1 + Math.random() * 2) * 0.25,  // 速度をより遅く
+                        (-1 + Math.random() * 2) * 0.25,
+                        (-1 + Math.random() * 2) * 0.25
+                    ),
+                    numConnections: 0
+                });
+            }
+
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            particles = new THREE.Points(geometry, pMaterial);
+            scene.add(particles);
+
+            // 線の生成
+            const lineMaterial = new THREE.LineBasicMaterial({
+                color: 0x0047AB,        // 濃い青色の線（コバルトブルー）
+                blending: THREE.AdditiveBlending,
+                transparent: true,
+                opacity: 0.3
+            });
+
+            const lineGeometry = new THREE.BufferGeometry();
+            lineGeometry.setAttribute('position', new THREE.BufferAttribute(linePositions, 3));
+            lineGeometry.setAttribute('color', new THREE.BufferAttribute(lineColors, 3));
+
+            lines = new THREE.LineSegments(lineGeometry, lineMaterial);
+            scene.add(lines);
+
+            camera.position.z = 2500;
+        }
+
+        function animateParticles() {
+            requestAnimationFrame(animateParticles);
+
+            const positions = particles.geometry.attributes.position.array;
+            const linePositions = lines.geometry.attributes.position.array;
+            const lineColors = lines.geometry.attributes.color.array;
+            let vertexpos = 0;
+            let colorpos = 0;
+            let numConnected = 0;
+
+            for (let i = 0; i < particleCount; i++) {
+                particlesData[i].numConnections = 0;
+            }
+
+            for (let i = 0; i < particleCount; i++) {
+                const particleData = particlesData[i];
+                positions[i * 3] += particleData.velocity.x;
+                positions[i * 3 + 1] += particleData.velocity.y;
+                positions[i * 3 + 2] += particleData.velocity.z;
+
+                if (positions[i * 3] < -rHalf || positions[i * 3] > rHalf) particleData.velocity.x = -particleData.velocity.x;
+                if (positions[i * 3 + 1] < -rHalf || positions[i * 3 + 1] > rHalf) particleData.velocity.y = -particleData.velocity.y;
+                if (positions[i * 3 + 2] < -rHalf || positions[i * 3 + 2] > rHalf) particleData.velocity.z = -particleData.velocity.z;
+
+                for (let j = i + 1; j < particleCount; j++) {
+                    const dx = positions[i * 3] - positions[j * 3];
+                    const dy = positions[i * 3 + 1] - positions[j * 3 + 1];
+                    const dz = positions[i * 3 + 2] - positions[j * 3 + 2];
+                    const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+
+                    if (dist < maxDistance && dist > minDistance) {
+                        particleData.numConnections++;
+                        particlesData[j].numConnections++;
+
+                        const alpha = 1.0 - dist / maxDistance;
+
+                        linePositions[vertexpos++] = positions[i * 3];
+                        linePositions[vertexpos++] = positions[i * 3 + 1];
+                        linePositions[vertexpos++] = positions[i * 3 + 2];
+                        linePositions[vertexpos++] = positions[j * 3];
+                        linePositions[vertexpos++] = positions[j * 3 + 1];
+                        linePositions[vertexpos++] = positions[j * 3 + 2];
+
+                        lineColors[colorpos++] = alpha;
+                        lineColors[colorpos++] = alpha;
+                        lineColors[colorpos++] = alpha;
+                        lineColors[colorpos++] = alpha;
+                        lineColors[colorpos++] = alpha;
+                        lineColors[colorpos++] = alpha;
+
+                        numConnected++;
+                    }
+                }
+            }
+
+            particles.geometry.attributes.position.needsUpdate = true;
+            lines.geometry.attributes.position.needsUpdate = true;
+            lines.geometry.attributes.color.needsUpdate = true;
+
+            renderer.render(scene, camera);
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        // パーティクルの初期化と開始
+        window.addEventListener('load', () => {
+            initParticles();
+            animateParticles();
+        });
+        window.addEventListener('resize', onWindowResize);
+    </script>
+
+    <style>
+        #particles-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+    </style>
+
 </body>
 </html>
